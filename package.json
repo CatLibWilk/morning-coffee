@@ -1,0 +1,32 @@
+{
+  "name": "MorningCoffee",
+  "version": "1.0.0",
+  "description": "Dashboard app with tied-in apps.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CatLibWilk/morning-coffee.git"
+  },
+  "author": "Andrew Wilk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CatLibWilk/morning-coffee/issues"
+  },
+  "homepage": "https://github.com/CatLibWilk/morning-coffee#readme",
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "pg": "^7.9.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^5.2.8",
+    "sequelize-cli": "^5.4.0"
+  }
+}
