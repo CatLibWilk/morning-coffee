@@ -13,7 +13,7 @@ class Navbar extends Component {
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand logo" href="#"><img class="logo" id="coffee-logo" src={require('../../images/coffee-logo.png')}></img></a>
+                <a class="navbar-brand logo"><img class="logo" id="coffee-logo" src={require('../../images/coffee-logo.png')}></img></a>
 
                 <div class="collapse navbar-collapse ml-5" id="navbarTogglerDemo03">
                     <ul class="navbar-nav mt-2 mt-lg-0">
