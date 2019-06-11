@@ -13,7 +13,7 @@ class Container extends Component {
         API.getContent(this.props.sourceType)
             .then(res => {
                 const returnedData = [...res.data]
-                this.setState({serviceData: returnedData})
+                this.setState( {serviceData: returnedData} )
 
             })
     }
@@ -21,16 +21,26 @@ class Container extends Component {
     
     render(){
         return(
-            <div class='col-sm-6 mt-5 mb-5 bg-primary'>
-                {
-                    this.state.serviceData.map(dataObj => {
-                        return <div class='p-2'>
-                                    <h3>{dataObj.title}</h3>
-                                    <p>{dataObj.description}</p>
-                                </div>
-                    })
-                }
+            <div class='col-sm-6 m-2'>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr></tr>
+                        </thead>
+                        <tbody>
+                            {   
+                            this.state.serviceData.map(dataObj => {
+                                return<tr class='served-row mt-2'>
+                                    <th scope="row"><img class='served-img' src={dataObj.img}></img></th>
+                                    <td><h5>{dataObj.title}</h5></td>
+                                    <td>{dataObj.description}</td>
+                                </tr>
+                                
+                            })
+                            }
+                        </tbody>
+                    </table>
             </div>
+        
         )
     }
 }

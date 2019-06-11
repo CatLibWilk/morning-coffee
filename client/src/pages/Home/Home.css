@@ -6,3 +6,12 @@
 #coffee-logo {
     margin-top: -15px;
 }
+
+.served-img {
+    max-height: 100px;
+    max-width: 100px
+}
+
+.served-row {
+    border-radius: 20px;
+}
