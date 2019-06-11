@@ -18,6 +18,11 @@ class Container extends Component {
             })
     }
 
+    goToContent = (url) =>{
+        // console.log(url);
+        window.open(`${url}`, '_blank');
+    }
+
     
     render(){
         return(
@@ -29,7 +34,7 @@ class Container extends Component {
                         <tbody>
                             {   
                             this.state.serviceData.map(dataObj => {
-                                return<tr class='served-row mt-2'>
+                                return<tr class='served-row mt-2' onClick={() => {this.goToContent(dataObj.url)}}>
                                     <th scope="row"><img class='served-img' src={dataObj.img}></img></th>
                                     <td><h5>{dataObj.title}</h5></td>
                                     <td>{dataObj.description}</td>
