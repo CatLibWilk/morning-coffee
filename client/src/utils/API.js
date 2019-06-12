@@ -10,6 +10,8 @@ export default {
         switch(source){
             case 'tagesschau':
                 return axios.get('/api/tagesschau/');
+                case 'makinghiphop':
+                    return axios.get('/api/makinghiphop/');
                 default: console.log('default');
         }
 

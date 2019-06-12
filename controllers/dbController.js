@@ -25,5 +25,25 @@ module.exports = {
                     res.json(dataArray)
 
                 })
-    }
+    },
+    makinghiphop: function(req, res){
+        console.log('makinghiphop in dbcontroller found');
+        axios.get('https://www.reddit.com/r/makinghiphop/rising.json?limit=5')
+                .then(response => {
+                    console.log(response)
+                    let dataArray = []
+                    for(let i = 0; i < 5; i++){
+                        const dataObj = {
+                            title: '',
+                            url: '',
+                            img: '',
+                            description: ''
+                        }
+                        dataArray.push(dataObj)
+                    }
+                    res.json(response.data)
+
+                })
+    },
+
 }

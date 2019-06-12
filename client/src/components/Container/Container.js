@@ -12,8 +12,9 @@ class Container extends Component {
     componentDidMount(){
         API.getContent(this.props.sourceType)
             .then(res => {
-                const returnedData = [...res.data]
-                this.setState( {serviceData: returnedData} )
+                console.log(res.data.children || res.data)
+                // const returnedData = [...res.data]
+                // this.setState( {serviceData: returnedData} )
 
             })
     }
@@ -26,7 +27,8 @@ class Container extends Component {
     
     render(){
         return(
-            <div class='col-sm-6 m-2'>
+            // <div class='col-sm-6 m-2'>
+            <div class={this.props.position ? `col m-2 ${this.props.position}` : 'col-sm-6 m-2'}>
                     <table class="table table-striped">
                         <thead>
                             <tr></tr>

@@ -22,7 +22,12 @@ class Home extends Component {
         return(
             <div>
                 <Navbar />
-                <Container sourceType={'tagesschau'}/>
+                <div class='container-fluid'>
+                    <div class='row'>
+                        <Container position={'mr-auto'} sourceType={'tagesschau'}/>
+                        <Container position={'mx-auto'} sourceType={'makinghiphop'}/>
+                    </div>
+                </div>
             </div>
         )
     }
