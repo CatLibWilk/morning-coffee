@@ -15,7 +15,7 @@ module.exports = {
                     let dataArray = []
                     for(let i = 0; i < 5; i++){
                         const dataObj = {
-                            title: response.data.news[i].title,
+                            title: response.data.news[i].title ? response.data.news[i].title : '',
                             url: response.data.news[i].shareURL,
                             img: response.data.news[i].images[0].portraetgross8x9.imageurl,
                             description: response.data.news[i].firstSentence
@@ -34,14 +34,15 @@ module.exports = {
                     let dataArray = []
                     for(let i = 0; i < 5; i++){
                         const dataObj = {
-                            title: '',
-                            url: '',
+                            title: response.data.data.children[i].data.title,
+                            url: response.data.data.children[i].data.url,
                             img: '',
-                            description: ''
+                            description: `${response.data.data.children[i].data.selftext.substr(0,100)}...`
                         }
                         dataArray.push(dataObj)
                     }
-                    res.json(response.data)
+                    // res.json(response.data.data.children[0].data)
+                    res.json(dataArray)
 
                 })
     },
