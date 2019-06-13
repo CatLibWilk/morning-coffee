@@ -9,7 +9,7 @@ module.exports = {
     },
     tagesschau: function(req, res){
         console.log('tagesschau in dbcontroller found');
-        axios.get('https://www.tagesschau.de/api2')
+        axios.get('https://www.tagesschau.de/api2/news')
                 .then(response => {
 
                     let dataArray = []
@@ -17,11 +17,12 @@ module.exports = {
                         const dataObj = {
                             title: response.data.news[i].title ? response.data.news[i].title : '',
                             url: response.data.news[i].shareURL,
-                            img: response.data.news[i].images[0].portraetgross8x9.imageurl,
+                            img: response.data.news[i].teaserImage.portraetgross8x9.imageurl,
                             description: response.data.news[i].firstSentence
                         }
                         dataArray.push(dataObj)
                     }
+                    // res.json(response.data.news[0])
                     res.json(dataArray)
 
                 })

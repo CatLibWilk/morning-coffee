@@ -12,6 +12,7 @@ class Container extends Component {
     componentDidMount(){
         API.getContent(this.props.sourceType)
             .then(res => {
+
                 const returnedData = [...res.data]
                 this.setState( {serviceData: returnedData} )
 
