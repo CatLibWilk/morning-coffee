@@ -10,6 +10,7 @@ class Container extends Component {
     }
 
     componentDidMount(){
+        if(this.props.sourceType){
         API.getContent(this.props.sourceType)
             .then(res => {
 
@@ -17,6 +18,7 @@ class Container extends Component {
                 this.setState( {serviceData: returnedData} )
 
             })
+        }
     }
 
     goToContent = (url) =>{
@@ -28,6 +30,7 @@ class Container extends Component {
     render(){
         return(
             // <div class='col-sm-6 m-2'>
+            this.props.weatherDiv ? <div class='row col-12'>weather will go here</div> :
             <div class={this.props.position ? `col m-2 ${this.props.position}` : 'col-sm-6 m-2'}>
                     <table class="table table-striped">
                         <thead>
@@ -47,7 +50,7 @@ class Container extends Component {
                         </tbody>
                     </table>
             </div>
-        
+    
         )
     }
 }

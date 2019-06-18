@@ -26,6 +26,7 @@ class Home extends Component {
                     <div class='row'>
                         <Container position={'mr-auto'} sourceType={'tagesschau'}/>
                         <Container position={'mx-auto'} sourceType={'makinghiphop'}/>
+                        <Container weatherDiv={'weatherDiv'} position={'mx-auto'} />
                     </div>
                 </div>
             </div>

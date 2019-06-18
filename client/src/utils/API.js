@@ -10,9 +10,11 @@ export default {
         switch(source){
             case 'tagesschau':
                 return axios.get('/api/tagesschau/');
-                case 'makinghiphop':
-                    return axios.get('/api/makinghiphop/');
-                default: console.log('default');
+            case 'makinghiphop':
+                return axios.get('/api/makinghiphop/');
+            case 'accuweather':
+                return `weather not hooked`;
+            default: return 'no service reached';
         }
 
 
