@@ -1,5 +1,6 @@
 const db = require('../models');
 const axios = require("axios");
+const weather_key = process.env.weather
 
 module.exports = {
     test: function(req, res){
@@ -47,5 +48,20 @@ module.exports = {
 
                 })
     },
+    openweather: function(req, res){
+        console.log('openweather in dbcontroller found')
+        axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Philadelphia&appid=${weather_key}`)
+                .then(response => {
+                    // console.log(response.data)
+                    const weatherData = {
+                        weather_flag: 'weather',
+                        cloud_cover: response.data.clouds.all,
+                        weather_description: response.data.weather[0].description,
+                        temp: Math.floor((response.data.main.temp-273.15) * 9/4 + 32),
+                        humidity: response.data.main.humidity
+                    }
+                    res.json(weatherData)
+                })
+    }
 
 }

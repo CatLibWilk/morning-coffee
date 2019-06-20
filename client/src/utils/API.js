@@ -12,8 +12,9 @@ export default {
                 return axios.get('/api/tagesschau/');
             case 'makinghiphop':
                 return axios.get('/api/makinghiphop/');
-            case 'accuweather':
-                return `weather not hooked`;
+            case 'openweather':
+                return axios.get('/api/openweather');
+
             default: return 'no service reached';
         }
 

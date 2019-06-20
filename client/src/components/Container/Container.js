@@ -5,7 +5,8 @@ class Container extends Component {
     constructor(props){
         super(props);
         this.state = {
-            serviceData: []
+            serviceData: [],
+            weatherData: []
         }
     }
 
@@ -13,9 +14,16 @@ class Container extends Component {
         if(this.props.sourceType){
         API.getContent(this.props.sourceType)
             .then(res => {
-
-                const returnedData = [...res.data]
-                this.setState( {serviceData: returnedData} )
+                // console.log(res.data)
+                let returnedData = [];
+                if(res.data.weather_flag){
+                    let returnedData = [res.data]
+                    this.setState( {weatherData: returnedData} )
+                }else{
+                    returnedData = [...res.data]
+                    this.setState( {serviceData: returnedData} )
+                }
+                
 
             })
         }
@@ -30,7 +38,7 @@ class Container extends Component {
     render(){
         return(
             // <div class='col-sm-6 m-2'>
-            this.props.weatherDiv ? <div class='row col-12'>weather will go here</div> :
+            this.props.weatherDiv ? <div class='row col-12'>{this.state.weatherData}</div> :
             <div class={this.props.position ? `col m-2 ${this.props.position}` : 'col-sm-6 m-2'}>
                     <table class="table table-striped">
                         <thead>

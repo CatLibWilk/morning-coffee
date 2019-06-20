@@ -24,9 +24,9 @@ class Home extends Component {
                 <Navbar />
                 <div class='container-fluid'>
                     <div class='row'>
-                        <Container position={'mr-auto'} sourceType={'tagesschau'}/>
-                        <Container position={'mx-auto'} sourceType={'makinghiphop'}/>
-                        <Container weatherDiv={'weatherDiv'} position={'mx-auto'} />
+                        {/* <Container position={'mr-auto'} sourceType={'tagesschau'}/> */}
+                        {/* <Container position={'mx-auto'} sourceType={'makinghiphop'}/> */}
+                        <Container weatherDiv={'weatherDiv'} position={'mx-auto'} sourceType={'openweather'} />
                     </div>
                 </div>
             </div>
