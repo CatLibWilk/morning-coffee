@@ -6,7 +6,12 @@ class Container extends Component {
         super(props);
         this.state = {
             serviceData: [],
-            weatherData: []
+            weatherData: [{
+                cloud_cover: '',
+                weather_description: '',
+                temp: '',
+                humidity: ''
+            }]
         }
     }
 
@@ -38,7 +43,17 @@ class Container extends Component {
     render(){
         return(
             // <div class='col-sm-6 m-2'>
-            this.props.weatherDiv ? <div class='row col-12'>{this.state.weatherData}</div> :
+            this.props.weatherDiv ? <div class='row col-12'>{this.state.weatherData.map(weather => {
+                return <div class='col mx-auto'>
+                            <h3>Currently in Philadelphia</h3>
+                            <h1>{weather.weather_description}</h1>
+                            <div class='col'>
+                                <h4 class='d-inline m-5'>{weather.temp}&deg;F</h4>
+                                <h4 class='d-inline m-5'>{weather.cloud_cover}% Clouds</h4>
+                                <h4 class='d-inline m-5'>{weather.humidity}% Humidity</h4>
+                            </div>
+                        </div>
+            })}</div> :
             <div class={this.props.position ? `col m-2 ${this.props.position}` : 'col-sm-6 m-2'}>
                     <table class="table table-striped">
                         <thead>
