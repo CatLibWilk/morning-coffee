@@ -31,9 +31,18 @@ class Container extends Component {
                 
 
             })
+        };
+        //need to move out of component and to another lifecycle event because trying to read undefined of the 
+        //non-weather components breaks the compile, but 'this.refs.cloud_cover
+        try{
+            console.log(this.refs.cloud_cover.colorindicator)
         }
+        catch(err) {
+            console.log(err)
+        }   
     }
 
+   
     goToContent = (url) =>{
         // console.log(url);
         window.open(`${url}`, '_blank');
@@ -49,7 +58,7 @@ class Container extends Component {
                             <h1>{weather.weather_description}</h1>
                             <div class='col'>
                                 <h4 class='d-inline m-5'>{weather.temp}&deg;F</h4>
-                                <h4 class='d-inline m-5'>{weather.cloud_cover}% Clouds</h4>
+                                <h4 ref='cloud_cover' class='d-inline m-5' colorindicator={weather.cloud_cover}>{weather.cloud_cover}% Clouds</h4>
                                 <h4 class='d-inline m-5'>{weather.humidity}% Humidity</h4>
                             </div>
                         </div>
