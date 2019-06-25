@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import API from '../../utils/API'
+import API from '../../utils/API';
+
 
 class Container extends Component {
     constructor(props){
@@ -11,8 +12,9 @@ class Container extends Component {
                 weather_description: '',
                 temp: '',
                 humidity: ''
-            }]
-        }
+            }],
+
+        };
     }
 
     componentDidMount(){
@@ -28,18 +30,28 @@ class Container extends Component {
                     returnedData = [...res.data]
                     this.setState( {serviceData: returnedData} )
                 }
-                
 
             })
+
+            
         };
-        //need to move out of component and to another lifecycle event because trying to read undefined of the 
-        //non-weather components breaks the compile, but 'this.refs.cloud_cover
-        try{
-            console.log(this.refs.cloud_cover.colorindicator)
+
+        if(this.refs.cloud_cover){
+            const cover = this.refs.cloud_cover
+
+            if(cover > 75){
+                this.cloud_color={color:'DarkGrey'}
+            }
+            if(cover < 75 && cover > 50){
+                this.cloud_color={color:'LightGrey'}
+            }
+            if(cover < 50 && cover > 25){
+                this.cloud_color={color:'LightYellow'}
+            }
+            if(cover < 25){
+                this.cloud_color={color:'Yellow'}
+            }
         }
-        catch(err) {
-            console.log(err)
-        }   
     }
 
    
@@ -52,8 +64,8 @@ class Container extends Component {
     render(){
         return(
             // <div class='col-sm-6 m-2'>
-            this.props.weatherDiv ? <div class='row col-12'>{this.state.weatherData.map(weather => {
-                return <div class='col mx-auto'>
+            this.props.weatherDiv ? <div class='row col-12' >{this.state.weatherData.map(weather => {
+                return <div class='col mx-auto' style={{backgroundColor: weather.cloud_cover > 50 ? 'Grey' : 'Yellow'}}>
                             <h3>Currently in Philadelphia</h3>
                             <h1>{weather.weather_description}</h1>
                             <div class='col'>
