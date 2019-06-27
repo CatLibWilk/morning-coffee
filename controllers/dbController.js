@@ -36,7 +36,7 @@ module.exports = {
                     let dataArray = []
                     for(let i = 0; i < 5; i++){
                         const dataObj = {
-                            title: response.data.data.children[i].data.title,
+                            title: `${response.data.data.children[i].data.title.substr(0,100)}...`,
                             url: response.data.data.children[i].data.url,
                             img: '',
                             description: `${response.data.data.children[i].data.selftext.substr(0,100)}...`

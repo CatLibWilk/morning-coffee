@@ -29,43 +29,29 @@ class Container extends Component {
                 }else{
                     returnedData = [...res.data]
                     this.setState( {serviceData: returnedData} )
-                }
-
-            })
-
-            
+                };
+            });            
         };
-
-        if(this.refs.cloud_cover){
-            const cover = this.refs.cloud_cover
-
-            if(cover > 75){
-                this.cloud_color={color:'DarkGrey'}
-            }
-            if(cover < 75 && cover > 50){
-                this.cloud_color={color:'LightGrey'}
-            }
-            if(cover < 50 && cover > 25){
-                this.cloud_color={color:'LightYellow'}
-            }
-            if(cover < 25){
-                this.cloud_color={color:'Yellow'}
-            }
-        }
-    }
+    };
 
    
     goToContent = (url) =>{
-        // console.log(url);
         window.open(`${url}`, '_blank');
+    };
+
+    hover = (e) => {
+        e.target.classList.add('focused-row');
+    }
+
+    disHover = (e) => {
+        e.target.classList.remove('focused-row');
     }
 
     
     render(){
         return(
-            // <div class='col-sm-6 m-2'>
             this.props.weatherDiv ? <div class='row col-12' >{this.state.weatherData.map(weather => {
-                return <div class='col mx-auto' style={{backgroundColor: weather.cloud_cover > 50 ? 'Grey' : 'Yellow'}}>
+                return <div id='weather-div' class='mx-auto' style={{backgroundColor: weather.cloud_cover > 50 ? 'Grey' : 'LightYellow'}}>
                             <h3>Currently in Philadelphia</h3>
                             <h1>{weather.weather_description}</h1>
                             <div class='col'>
@@ -83,7 +69,7 @@ class Container extends Component {
                         <tbody>
                             {   
                             this.state.serviceData.map(dataObj => {
-                                return<tr class='served-row mt-2' onClick={() => {this.goToContent(dataObj.url)}}>
+                                return<tr class='served-row mt-2' onMouseEnter={this.hover} onMouseLeave={this.disHover} onClick={() => {this.goToContent(dataObj.url)}}>
                                     <th scope="row"><img class='served-img' src={dataObj.img}></img></th>
                                     <td><h5>{dataObj.title}</h5></td>
                                     <td>{dataObj.description}</td>

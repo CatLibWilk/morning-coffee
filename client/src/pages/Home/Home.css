@@ -15,3 +15,11 @@
 .served-row {
     border-radius: 20px;
 }
+
+#weather-div {
+    min-width: 103%;
+}
+
+tr .focused-row {
+    transform: scale(1.2)
+}
