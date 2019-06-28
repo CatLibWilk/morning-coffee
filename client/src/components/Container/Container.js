@@ -39,14 +39,6 @@ class Container extends Component {
         window.open(`${url}`, '_blank');
     };
 
-    hover = (e) => {
-        e.target.classList.add('focused-row');
-    }
-
-    disHover = (e) => {
-        e.target.classList.remove('focused-row');
-    }
-
     
     render(){
         return(
@@ -69,8 +61,8 @@ class Container extends Component {
                         <tbody>
                             {   
                             this.state.serviceData.map(dataObj => {
-                                return<tr class='served-row mt-2' onMouseEnter={this.hover} onMouseLeave={this.disHover} onClick={() => {this.goToContent(dataObj.url)}}>
-                                    <th scope="row"><img class='served-img' src={dataObj.img}></img></th>
+                                return<tr class='served-row mt-2' onClick={() => {this.goToContent(dataObj.url)}}>
+                                    {dataObj.img ? <th scope="row"><img class='served-img' src={dataObj.img}></img></th> : ''}
                                     <td><h5>{dataObj.title}</h5></td>
                                     <td>{dataObj.description}</td>
                                 </tr>

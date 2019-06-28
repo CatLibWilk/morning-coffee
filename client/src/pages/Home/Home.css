@@ -20,6 +20,11 @@
     min-width: 103%;
 }
 
-tr .focused-row {
-    transform: scale(1.2)
+tr:hover {
+    transform: scale(1.05);
+    background-color: rgb(255, 239, 225) !important;
+}
+
+table {
+    border-collapse: separate !important
 }
