@@ -28,3 +28,8 @@ tr:hover {
 table {
     border-collapse: separate !important
 }
+
+a {
+    text-decoration: none !important;
+    color: black !important;
+}

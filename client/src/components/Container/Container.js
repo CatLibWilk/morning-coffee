@@ -44,6 +44,7 @@ class Container extends Component {
         return(
             this.props.weatherDiv ? <div class='row col-12' >{this.state.weatherData.map(weather => {
                 return <div id='weather-div' class='mx-auto' style={{backgroundColor: weather.cloud_cover > 50 ? 'Grey' : 'LightYellow'}}>
+                            <a href='https://www.accuweather.com/en/us/philadelphia-pa/19102/weather-forecast/350540' target='_blank'>
                             <h3>Currently in Philadelphia</h3>
                             <h1>{weather.weather_description}</h1>
                             <div class='col'>
@@ -51,6 +52,7 @@ class Container extends Component {
                                 <h4 ref='cloud_cover' class='d-inline m-5' colorindicator={weather.cloud_cover}>{weather.cloud_cover}% Clouds</h4>
                                 <h4 class='d-inline m-5'>{weather.humidity}% Humidity</h4>
                             </div>
+                            </a>
                         </div>
             })}</div> :
             <div class={this.props.position ? `col m-2 ${this.props.position}` : 'col-sm-6 m-2'}>
