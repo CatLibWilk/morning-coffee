@@ -62,6 +62,26 @@ module.exports = {
                     }
                     res.json(weatherData)
                 })
-    }
+    },
+    quotes: function(req, res){
+        console.log('quotes controller function hit')
+        let quoteData;
+            axios.get('http://quotes.rest/qod.json?category=inspire')
+            .then(response => {
+                quoteData = {
+                    quote: response.data.contents.quotes[0].quote || 'Ricky Tan Tell Me How To Be A Man',
+                    attribution: response.data.contents.quotes[0].author || 'Chim Richells',
+                    quote_flag: 'qf'
+                }
+                res.json(quoteData)
+            }).catch(error => {
+                quoteData = {
+                    quote: 'Ricky tan Ricky Tan tell me how to be a man.',
+                    attribution: 'Chim Richells',
+                    quote_flag: 'qf-error'
+                }
+                res.json(quoteData)
+            })
+        }
 
 }

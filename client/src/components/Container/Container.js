@@ -13,6 +13,10 @@ class Container extends Component {
                 temp: '',
                 humidity: ''
             }],
+            quoteData: [{
+                quote: '',
+                attribution: ''
+            }]
 
         };
     }
@@ -21,14 +25,21 @@ class Container extends Component {
         if(this.props.sourceType){
         API.getContent(this.props.sourceType)
             .then(res => {
-                // console.log(res.data)
+                console.log(res)
                 let returnedData = [];
+
                 if(res.data.weather_flag){
                     let returnedData = [res.data]
                     this.setState( {weatherData: returnedData} )
                 }else{
-                    returnedData = [...res.data]
-                    this.setState( {serviceData: returnedData} )
+                        if(res.data.quote_flag){
+                            returnedData = [res.data]
+                            this.setState( {quoteData: returnedData} )
+                        }else{
+                                returnedData = [...res.data]
+                            
+                                this.setState( {serviceData: returnedData} )
+                        }
                 };
             });            
         };
@@ -54,7 +65,15 @@ class Container extends Component {
                             </div>
                             </a>
                         </div>
-            })}</div> :
+            })}</div> : this.props.quoteDiv ? <div class='row col-12'>{this.state.quoteData.map(quote => {
+                return <div class='mx-auto'>
+                    <h1>{quote.attribution}</h1>
+                    <h3>{quote.quote}</h3>
+                </div>
+            })}</div>
+            
+            :
+
             <div class={this.props.position ? `col m-2 ${this.props.position}` : 'col-sm-6 m-2'}>
                     <table class="table table-striped">
                         <thead>

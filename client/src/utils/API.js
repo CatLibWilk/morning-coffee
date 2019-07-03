@@ -14,6 +14,8 @@ export default {
                 return axios.get('/api/makinghiphop/');
             case 'openweather':
                 return axios.get('/api/openweather');
+            case 'quotes':
+                return axios.get('/api/quotes');
 
             default: return 'no service reached';
         }
