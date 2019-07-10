@@ -33,3 +33,12 @@ a {
     text-decoration: none !important;
     color: black !important;
 }
+
+#weather-div:hover {
+    opacity: 0.5;
+    transform: scale(1.05);
+    
+    transition: transform 1.25s ease-in-out;
+    -moz-transition: transform 1.25s ease-in-out;
+    -webkit-transition: transform 1.25s ease-in-out;
+}
