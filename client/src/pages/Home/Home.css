@@ -42,3 +42,7 @@ a {
     -moz-transition: transform 1.25s ease-in-out;
     -webkit-transition: transform 1.25s ease-in-out;
 }
+
+#quote-div {
+    background-color: green;
+}

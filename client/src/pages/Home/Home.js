@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../../components/Navbar"
 import Container from "../../components/Container"
+import List from "../../components/List"
 import API from '../../utils/API.js'
 import './Home.css'
 
@@ -30,6 +31,9 @@ class Home extends Component {
                     </div>
                     <div class='row'>
                         <Container quoteDiv={'qd'} position={'mx-auto'} sourceType={'quotes'} />
+                    </div>
+                    <div class='row'>
+                        <List />
                     </div>
                 </div>
             </div>

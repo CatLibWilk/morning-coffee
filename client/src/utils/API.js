@@ -19,7 +19,9 @@ export default {
 
             default: return 'no service reached';
         }
+    },
 
-
+    getToDos: function(){
+        return axios.get('/api/todos')
     }
 }

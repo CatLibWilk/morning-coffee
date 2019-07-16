@@ -82,6 +82,11 @@ module.exports = {
                 }
                 res.json(quoteData)
             })
-        }
+        },
+    todos: function(req, res){
+        console.log('todo hit')
+        let todos = ['German', 'JS', 'History', 'Track']
+        res.send(todos)
+    }
 
 }

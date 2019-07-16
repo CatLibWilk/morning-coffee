@@ -17,6 +17,8 @@ router.route('/openweather')
 router.route('/quotes')
         .get(dbController.quotes)
 
+router.route('/todos')
+        .get(dbController.todos)
 
 module.exports = router;
            
