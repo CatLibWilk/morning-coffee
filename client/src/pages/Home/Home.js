@@ -17,6 +17,7 @@ class Home extends Component {
         }
     };
 
+    //https://www.robinwieruch.de/complete-firebase-authentication-react-tutorial/#react-firebase for contining firebase setup. Unlock firebase database from private
 
     render(){
        
