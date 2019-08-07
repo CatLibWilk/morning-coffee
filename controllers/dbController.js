@@ -1,6 +1,7 @@
 const db = require('../models');
 const axios = require("axios");
 const weather_key = process.env.weather
+const firebase = require('firebase');
 
 module.exports = {
     test: function(req, res){
@@ -86,6 +87,8 @@ module.exports = {
     todos: function(req, res){
         console.log('todo hit')
         let todos = ['German', 'JS', 'History', 'Track']
+        firebase.database().ref('/TestMessages').set({TestMessage: 'GET Request'});
+
         res.send(todos)
     }
 

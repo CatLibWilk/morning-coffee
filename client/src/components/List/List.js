@@ -12,22 +12,32 @@ class List extends Component {
 
     componentDidMount(){
         API.getToDos()
-            .then(returned => {
-                this.setState( {todos: returned.data} )
-            })
+        .then(returned => {
+            this.setState( {todos: returned.data} )
+        }); 
     };
+    
+    //test firebase call functionality outside of componentDidMount
+    // getTodos = () => {
+    //     console.log('tada clicked')
+    //     API.getToDos()
+    //         .then(returned => {
+    //             this.setState( {todos: returned.data} )
+    //         });
+    // }
 
    
     render(){
         return(
             <div class='mx-auto mt-5'>
                 <h1>Todos Today</h1>
-                <div >{this.state.todos.map(item => {
+                {(this.state.todos.map instanceof Function)? <div >{this.state.todos.map(item => {
                     return <tr class='served-row mt-2'>
                         <td><h3>{item}</h3></td>
                     </tr>
                 })}
-                </div>
+                </div> : 'no Todos Today'}
+                <button onClick={this.getTodos}>Test Todos</button>
             </div>
         )
     }
