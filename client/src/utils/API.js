@@ -23,5 +23,9 @@ export default {
 
     getToDos: function(){
         return axios.get('/api/todos')
-    }
+    },
+    
+    addToDo: function(todo){
+        return axios.post('/api/todos/' + todo)
+    },
 }

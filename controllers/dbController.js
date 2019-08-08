@@ -84,12 +84,22 @@ module.exports = {
                 res.json(quoteData)
             })
         },
-    todos: function(req, res){
+    getTodos: function(req, res){
         console.log('todo hit')
-        let todos = ['German', 'JS', 'History', 'Track']
-        firebase.database().ref('/TestMessages').set({TestMessage: 'GET Request'});
+        // let todos = ['German', 'JS', 'History', 'Track']
+        firebase.database().ref('/Todos').once('value').then(snapshot => {
+            const data = snapshot.val()
+            res.send(data)
+        });
 
-        res.send(todos)
-    }
+        // res.send(todos)
+    },
+
+    addTodo: function(req, res){
+        console.log('add todo hit')
+        firebase.database().ref('/Todos').set({todo: 'German'});
+
+        // res.send()
+    },
 
 }

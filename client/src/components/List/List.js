@@ -13,19 +13,13 @@ class List extends Component {
     componentDidMount(){
         API.getToDos()
         .then(returned => {
-            this.setState( {todos: returned.data} )
+            const returnedTodos = Object.values(returned.data)
+            console.log(returnedTodos)
+            
+            this.setState( {todos: returnedTodos} )
         }); 
     };
     
-    //test firebase call functionality outside of componentDidMount
-    // getTodos = () => {
-    //     console.log('tada clicked')
-    //     API.getToDos()
-    //         .then(returned => {
-    //             this.setState( {todos: returned.data} )
-    //         });
-    // }
-
    
     render(){
         return(
@@ -37,7 +31,7 @@ class List extends Component {
                     </tr>
                 })}
                 </div> : 'no Todos Today'}
-                <button onClick={this.getTodos}>Test Todos</button>
+
             </div>
         )
     }

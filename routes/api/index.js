@@ -18,7 +18,10 @@ router.route('/quotes')
         .get(dbController.quotes)
 
 router.route('/todos')
-        .get(dbController.todos)
+        .get(dbController.getTodos)
+
+router.route('/todos')
+        .post(dbController.addTodo)
 
 module.exports = router;
            
