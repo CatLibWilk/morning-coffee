@@ -23,5 +23,8 @@ router.route('/todos')
 router.route('/todos')
         .post(dbController.addTodo)
 
+router.route('/todos/delete')
+        .post(dbController.deleteTodo)
+
 module.exports = router;
            

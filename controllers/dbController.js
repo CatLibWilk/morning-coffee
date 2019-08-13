@@ -96,10 +96,17 @@ module.exports = {
     },
 
     addTodo: function(req, res){
-        console.log('add todo hit')
-        firebase.database().ref('/Todos').set({todo: 'German'});
+        console.log(`add todo hit: adding ${req.body.todo}`)
+        firebase.database().ref('/Todos').push().set({todo: req.body.todo});
 
         // res.send()
     },
+    
+    deleteTodo: function(req, res){
+        const targetTodo = Object.keys(req.body)
+        console.log(targetTodo[0])
+        
+        // res.send()
+    }
 
 }

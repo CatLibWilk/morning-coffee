@@ -25,7 +25,13 @@ export default {
         return axios.get('/api/todos')
     },
     
-    addToDo: function(todo){
-        return axios.post('/api/todos/' + todo)
+    addTodo: function(todo){
+        return axios.post('/api/todos/', todo)
+    },
+    
+    deleteTodo: function(todo){
+        return axios.post('/api/todos/delete', todo)
     },
 }
+
+
