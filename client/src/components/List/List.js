@@ -14,10 +14,14 @@ class List extends Component {
     componentDidMount(){
         API.getToDos()
         .then(returned => {
-            const returnedTodos = Object.values(returned.data)
-            console.log(returnedTodos)
+
+            console.log(returned.data)
             let todoArray = []
-            returnedTodos.map(todo => {todoArray.push(todo.todo)})
+            const returnedObj = returned.data
+            Object.keys(returned.data).map(key => {
+                const todoArr = [ key, returnedObj[key].todo ]
+                todoArray.push( todoArr )
+            })
             console.log(todoArray)
             this.setState( {todos: todoArray} )
         }); 
@@ -26,8 +30,10 @@ class List extends Component {
     handleInputSubmit = (e) => {
         e.preventDefault(); 
         console.log(`Current todo input ${this.state.todo_input}`);
-        API.addTodo({todo: this.state.todo_input})
-    }
+        API.addTodo({todo: this.state.todo_input}).then(response => {
+            document.getElementById("todo-form").reset();
+            this.componentDidMount()})
+        }
 
     handleInputChange = (e) => {
         e.preventDefault();
@@ -36,7 +42,7 @@ class List extends Component {
 
     handleDelete = (item) => {
         console.log(item)
-        API.deleteTodo(item)
+        API.deleteTodo(item).then(response => this.componentDidMount())
     }
     
    
@@ -46,14 +52,14 @@ class List extends Component {
                 <h1>Todos Today</h1>
                 {(this.state.todos.map instanceof Function)? <div >{this.state.todos.map(item => {
                     return <tr class='served-row mt-2'>
-                        <td><h3>{item}</h3></td>
-                        <td value={item} onClick={() => {this.handleDelete(item)}}>x</td>
+                        <td><h3>{item[1]}</h3></td>
+                        <td id={item[0]} onClick={() => {this.handleDelete(item[0])}}> x </td>
                     </tr>
                 })}
                 </div> : 'no Todos Today'}
-                <form onSubmit={this.handleInputSubmit}>
+                <form id="todo-form" onSubmit={this.handleInputSubmit}>
                     <label>
-                    <input type="text" value={this.state.todo_input} onChange={this.handleInputChange} />
+                    <input id="todo-input-field" type="text" onChange={this.handleInputChange} />
                     </label>
                     <input type="submit" value="Add" />
                 </form>

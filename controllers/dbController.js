@@ -89,6 +89,7 @@ module.exports = {
         // let todos = ['German', 'JS', 'History', 'Track']
         firebase.database().ref('/Todos').once('value').then(snapshot => {
             const data = snapshot.val()
+            console.log(data)
             res.send(data)
         });
 
@@ -99,14 +100,15 @@ module.exports = {
         console.log(`add todo hit: adding ${req.body.todo}`)
         firebase.database().ref('/Todos').push().set({todo: req.body.todo});
 
-        // res.send()
+        res.send(`ok ok`)
     },
     
     deleteTodo: function(req, res){
-        const targetTodo = Object.keys(req.body)
-        console.log(targetTodo[0])
-        
-        // res.send()
+        const targetTodo = Object.keys(req.body)[0]
+        console.log(`todo item with id ${targetTodo} will be deleted`)
+        firebase.database().ref('/Todos').child(targetTodo).remove()
+        res.send(`ok ok`)
+
     }
 
 }
