@@ -46,3 +46,21 @@ a {
 #quote-div {
     background-color: green;
 }
+
+.todo-item {
+    background-color: rgb(230, 230, 230);
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(194, 194, 194);
+}
+
+.todo-item:hover {
+    transform: scale(1.10)
+}
+
+.shrinky {
+    transform: scale(.25);
+    transition: transform 1.25s ease-in-out;
+    -moz-transition: transform 1.25s ease-in-out;
+    -webkit-transition: transform 1.25s ease-in-out;
+
+}

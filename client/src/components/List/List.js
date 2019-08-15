@@ -40,10 +40,27 @@ class List extends Component {
         this.setState( {todo_input: e.target.value} );
     }
 
-    handleDelete = (item) => {
-        console.log(item)
-        API.deleteTodo(item).then(response => this.componentDidMount())
+    handleDelete = (pass) => {
+        console.log(pass)
+        const shrink = new Promise((res, rej) => {
+            const tar = document.getElementById(pass)
+            tar.classList.add('shrinky')
+            setTimeout(() =>{
+                console.log('shrink timeout')
+            res()
+            }, 1250)
+        });
+        shrink.then(() =>{
+            console.log('.then start')
+            API.deleteTodo(pass).then(response => this.componentDidMount())
+        });
     }
+
+    // setTimeout(function() {
+    //     resolve('foo');
+    //   }, 300);
+    // });
+    
     
    
     render(){
@@ -51,17 +68,15 @@ class List extends Component {
             <div class='mx-auto mt-5'>
                 <h1>Todos Today</h1>
                 {(this.state.todos.map instanceof Function)? <div >{this.state.todos.map(item => {
-                    return <tr class='served-row mt-2'>
-                        <td><h3>{item[1]}</h3></td>
-                        <td id={item[0]} onClick={() => {this.handleDelete(item[0])}}> x </td>
-                    </tr>
+                    return <div id={item[0]} class='todo-item' onClick={() => {this.handleDelete(item[0])}}><h3>{item[1]}</h3></div>
+
                 })}
                 </div> : 'no Todos Today'}
                 <form id="todo-form" onSubmit={this.handleInputSubmit}>
                     <label>
                     <input id="todo-input-field" type="text" onChange={this.handleInputChange} />
                     </label>
-                    <input type="submit" value="Add" />
+                    <button class='btn-primary mt-5' type="submit" value="Add">Add</button>
                 </form>
             </div>
         )
