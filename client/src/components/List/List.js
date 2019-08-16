@@ -13,19 +13,18 @@ class List extends Component {
 
     componentDidMount(){
         API.getToDos()
-        .then(returned => {
-
-            console.log(returned.data)
-            let todoArray = []
-            const returnedObj = returned.data
-            Object.keys(returned.data).map(key => {
-                const todoArr = [ key, returnedObj[key].todo ]
-                todoArray.push( todoArr )
-            })
-            console.log(todoArray)
-            this.setState( {todos: todoArray} )
-        }); 
-    };
+            .then(returned => {
+                console.log(returned.data)
+                let todoArray = []
+                const returnedObj = returned.data
+                Object.keys(returned.data).map(key => {
+                    const todoArr = [ key, returnedObj[key].todo ]
+                    todoArray.push( todoArr )
+                })
+                console.log(todoArray)
+                this.setState( {todos: todoArray} )
+            }); 
+        };
 
     handleInputSubmit = (e) => {
         e.preventDefault(); 
@@ -44,23 +43,22 @@ class List extends Component {
         console.log(pass)
         const shrink = new Promise((res, rej) => {
             const tar = document.getElementById(pass)
+
             tar.classList.add('shrinky')
             setTimeout(() =>{
                 console.log('shrink timeout')
             res()
-            }, 1250)
+            }, 1200)
         });
         shrink.then(() =>{
             console.log('.then start')
-            API.deleteTodo(pass).then(response => this.componentDidMount())
+            API.deleteTodo(pass).then(response => {
+                this.componentDidMount();
+                const todoArr = document.querySelectorAll('.todo-item')
+                todoArr.forEach(div => div.classList.remove('shrinky'))
+            });
         });
-    }
-
-    // setTimeout(function() {
-    //     resolve('foo');
-    //   }, 300);
-    // });
-    
+    };
     
    
     render(){
