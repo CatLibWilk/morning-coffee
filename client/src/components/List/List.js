@@ -24,10 +24,12 @@ class List extends Component {
                 console.log(todoArray)
                 this.setState( {todos: todoArray} )
             }); 
+        console.log(`todos array length: ${this.state.todos}`)
         };
 
     handleInputSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault();
+ 
         console.log(`Current todo input ${this.state.todo_input}`);
         API.addTodo({todo: this.state.todo_input}).then(response => {
             document.getElementById("todo-form").reset();
@@ -48,7 +50,7 @@ class List extends Component {
             setTimeout(() =>{
                 console.log('shrink timeout')
             res()
-            }, 1200)
+            }, 1000)
         });
         shrink.then(() =>{
             console.log('.then start')
@@ -65,11 +67,14 @@ class List extends Component {
         return(
             <div class='mx-auto mt-5'>
                 <h1>Todos Today</h1>
-                {(this.state.todos.map instanceof Function)? <div >{this.state.todos.map(item => {
-                    return <div id={item[0]} class='todo-item' onClick={() => {this.handleDelete(item[0])}}><h3>{item[1]}</h3></div>
+                <div>
+                    {this.state.todos.length == 1 ? <div><h3>All Done For Today!</h3><h4>Add some more below...</h4></div>
+                     : this.state.todos.map(item => {
+                        return <div id={item[0]} class='todo-item' onClick={() => {this.handleDelete(item[0])}}><h3>{item[1]}</h3></div>
+    
+                    })}
+                </div>
 
-                })}
-                </div> : 'no Todos Today'}
                 <form id="todo-form" onSubmit={this.handleInputSubmit}>
                     <label>
                     <input id="todo-input-field" type="text" onChange={this.handleInputChange} />
