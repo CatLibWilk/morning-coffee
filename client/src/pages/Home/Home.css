@@ -53,9 +53,10 @@ a {
     box-shadow: 5px 5px 5px rgb(194, 194, 194);
 }
 
-.todo-item:hover {
+.todo-item:not(.no-hover):hover {
     transform: scale(1.10)
 }
+
 
 .shrinky {
     transform: scale(.25);

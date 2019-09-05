@@ -46,7 +46,7 @@ class List extends Component {
         const shrink = new Promise((res, rej) => {
             const tar = document.getElementById(pass)
 
-            tar.classList.add('shrinky')
+            tar.classList.add('shrinky', 'no-hover')
             setTimeout(() =>{
                 console.log('shrink timeout')
             res()
@@ -61,7 +61,6 @@ class List extends Component {
             });
         });
     };
-    
    
     render(){
         return(
